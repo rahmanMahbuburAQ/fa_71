@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart';
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      body: Center(
+       child:Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children:[
+          //logo
+          Icon(
+            Icons.lock_open_rounded,
+            size: 90,
+            color: Theme.of(context).colorScheme.inversePrimary,
+
+          ),
+          const SizedBox(height:30),
+
+
+
+
+          //message, app slogan
+          Text('Shopping app!')
+
+
+          //email textfield
+
+
+          //password textfield
+
+          //sign in button
+
+          //not a member? register now
+
+        ]
+      ),
+    ),
+    );
+  }
+}
+
