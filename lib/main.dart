@@ -1,4 +1,5 @@
 import 'package:fa_71/auth/login_or_register.dart';
+import 'package:fa_71/pages/on_boarding_page.dart';
 import 'package:fa_71/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget{
   Widget build (BuildContext context){
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const LoginOrRegister(),
+      home: const OnBoardingPage(),
       theme: Provider.of<ThemeProvider>(context).themeData,
     );
   }

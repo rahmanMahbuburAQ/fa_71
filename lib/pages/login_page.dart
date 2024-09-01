@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
 
             // Message, app slogan
             Text(
-              'Welcome to Cart71 app!',
+              '67Welcome to Cart71 app!',
               style: TextStyle(
                 fontSize: 18,
                 color: Theme.of(context).colorScheme.inversePrimary,
