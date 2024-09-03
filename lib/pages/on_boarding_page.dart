@@ -13,7 +13,7 @@ class OnBoardingPage extends StatelessWidget {
           titleWidget: Padding(
             padding: const EdgeInsets.only(top: 30.0), // Add padding to the top of the title
             child: Text(
-              'Step: 1',
+              'Welcome to Cart71 app!',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),

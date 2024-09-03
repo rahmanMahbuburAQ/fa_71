@@ -52,7 +52,7 @@ class StripeService {
     await Stripe.instance.initPaymentSheet(
      paymentSheetParameters: SetupPaymentSheetParameters(
       paymentIntentClientSecret: paymentIntent['client_secret'],
-      merchantDisplayName: 'Hey my AQ customer',
+      merchantDisplayName: 'Hey my customer',
       style: ThemeMode.system,
      ),
     );

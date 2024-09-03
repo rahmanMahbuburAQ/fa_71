@@ -15,13 +15,20 @@ class MyTabBar extends StatelessWidget {
         controller: tabController,
         tabs: [
           //1st tab
-          Tab(icon: Icon(Icons.home)),
+          Tab(icon: Icon(Icons.camera_rear)),
 
           //2nd tab
-          Tab(icon: Icon(Icons.settings)),
+          Tab(icon: Icon(Icons.pedal_bike)),
 
           //3rd tab
-          Tab(icon: Icon(Icons.person)),
+          Tab(icon: Icon(Icons.motorcycle)),
+
+
+          //4th tab
+          Tab(icon: Icon(Icons.car_repair)),
+
+          //4th tab
+          Tab(icon: Icon(Icons.shop)),
 
 
         ]

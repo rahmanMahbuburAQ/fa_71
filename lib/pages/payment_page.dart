@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:fa_71/controllers/stripe_service.dart';
 
 class PaymentPage extends StatefulWidget {
-  const PaymentPage({super.key});
+  const PaymentPage({super.key
+
+  });
 
   @override
   State<PaymentPage> createState() => _PaymentPageState();
 }
 
 class _PaymentPageState extends State<PaymentPage> {
-  String amount = '3000';
+  String amount = '5500';
   String currency = 'JPY';
 
   @override
@@ -36,19 +38,28 @@ class _PaymentPageState extends State<PaymentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Payment1'),
+        title: Text('Payment Screen'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+              'Payment section', // The text you want to display
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              'Total payment', // The text you want to display
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
             ElevatedButton(
               onPressed: () async {
                 try {
                   await StripeService.initPaymentSheet(amount, currency);
                   await StripeService.presentPaymentSheet();
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Payment successful!')),
+                    SnackBar(content: Text('Congratulations!!! Payment successful!')),
                   );
                 } catch (e) {
                   print('Payment error: $e');
@@ -56,6 +67,14 @@ class _PaymentPageState extends State<PaymentPage> {
                 }
               },
               child: Text("Pay JPY $amount"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue, // Background color
+                foregroundColor: Colors.white, // Text color
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12), // Button padding
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8), // Rounded corners
+                ),
+              ),
             ),
           ],
         ),

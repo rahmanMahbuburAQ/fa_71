@@ -16,8 +16,12 @@ class CartPage extends StatelessWidget {
             // Center the column content
             children: [
               Text(
-                'Welcome to MyCart', // The text you want to display
+                'Cart section', // The text you want to display
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                'Total cart items and total cost', // The text you want to display
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
               // Add some space between the text and the button
@@ -32,11 +36,17 @@ class CartPage extends StatelessWidget {
                   );
                 },
                 child: Text('Go to payment'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue, // Background color
+                  foregroundColor: Colors.white, // Text color
+                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12), // Button padding
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8), // Rounded corners
+                  ),
+                ),
               ),
-              //card
-
             ],
-          )
+          ),
       ),
     );
   }
