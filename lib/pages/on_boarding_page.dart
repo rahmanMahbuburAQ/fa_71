@@ -10,37 +10,129 @@ class OnBoardingPage extends StatelessWidget {
     return IntroductionScreen(
       pages: [
         PageViewModel(
-          title: 'First image',
-          body: 'This is the first description',
-          image: Image.asset(
-            'lib/images/first.png',
-            width: 150,
+          titleWidget: Padding(
+            padding: const EdgeInsets.only(top: 30.0), // Add padding to the top of the title
+            child: Text(
+              'Step: 1',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+          ),
+          bodyWidget: Padding(
+            padding: const EdgeInsets.only(top: 10.0), // Add padding at the top
+            child: Column(
+              children: [
+                Text(
+                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                  style: TextStyle(fontSize: 13),
+                ),
+                SizedBox(height: 40), // Add spacing between text and image
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(110.0), // Make the image circular
+                  child: Image.asset(
+                    'lib/images/first.png',
+                    width: 200,
+                    height: 200,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
+
         PageViewModel(
-          title: 'Second image',
-          body: 'This is the second description',
-          image: Image.asset(
-            'lib/images/two.png',
-            width: 150,
+          titleWidget: Padding(
+            padding: const EdgeInsets.only(top: 30.0), // Add padding to the top of the title
+            child: Text(
+              'Step: 2',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+          ),
+          bodyWidget: Padding(
+            padding: const EdgeInsets.only(top: 10.0), // Add padding at the top
+            child: Column(
+              children: [
+                Text(
+                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                  style: TextStyle(fontSize: 13),
+                ),
+                SizedBox(height: 40), // Add spacing between text and image
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(110.0), // Make the image circular
+                  child: Image.asset(
+                    'lib/images/two.png',
+                    width: 200,
+                    height: 200,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
+
         PageViewModel(
-          title: 'Third image',
-          body: 'This is the third description',
-          image: Image.asset(
-            'lib/images/three.jpg',
-            width: 150,
+          titleWidget: Padding(
+            padding: const EdgeInsets.only(top: 30.0), // Add padding to the top of the title
+            child: Text(
+              'Step: 3',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+          ),
+          bodyWidget: Padding(
+            padding: const EdgeInsets.only(top: 10.0), // Add padding at the top
+            child: Column(
+              children: [
+                Text(
+                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                  style: TextStyle(fontSize: 13),
+                ),
+                SizedBox(height: 40), // Add spacing between text and image
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(110.0), // Make the image circular
+                  child: Image.asset(
+                    'lib/images/three.jpg',
+                    width: 200,
+                    height: 200,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
+
         PageViewModel(
-          title: 'Fourth image',
-          body: 'This is the fourth description',
-          image: Image.asset(
-            'lib/images/two.png',
-            width: 150,
+          titleWidget: Padding(
+            padding: const EdgeInsets.only(top: 30.0), // Add padding to the top of the title
+            child: Text(
+              'Step: 4',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+          ),
+          bodyWidget: Padding(
+            padding: const EdgeInsets.only(top: 10.0), // Add padding at the top
+            child: Column(
+              children: [
+                Text(
+                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                  style: TextStyle(fontSize: 13),
+                ),
+                SizedBox(height: 40), // Add spacing between text and image
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(110.0), // Make the image circular
+                  child: Image.asset(
+                    'lib/images/first.png',
+                    width: 200,
+                    height: 200,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
+
       ],
       onDone: () {
         // Navigate to the login page when the onboarding is done
@@ -55,6 +147,7 @@ class OnBoardingPage extends StatelessWidget {
       skip: const Text('Skip'),
       next: const Icon(Icons.arrow_forward),
       done: const Text('Done', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue)),
+      //globalBackgroundColor: Colors.red,
       dotsDecorator: DotsDecorator(
         //size: Size(10, 10),
         color: Colors.blueGrey,

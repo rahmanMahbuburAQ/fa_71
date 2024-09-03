@@ -3,10 +3,12 @@ import 'package:fa_71/pages/on_boarding_page.dart';
 import 'package:fa_71/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 
 
-void main() {
+void main() async {
+
   runApp(
     ChangeNotifierProvider(
         create: (context) => ThemeProvider(),
