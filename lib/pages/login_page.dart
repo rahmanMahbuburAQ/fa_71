@@ -2,6 +2,8 @@ import 'package:fa_71/components/my_button.dart';
 import 'package:fa_71/components/my_textfield.dart';
 import 'package:fa_71/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 class LoginPage extends StatefulWidget {
   final void Function()? onTap;
@@ -20,17 +22,51 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  // Login method:
-  void login() {
-    // Authentication part:
+  // Firebase Authentication instance
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-    // Navigation part:
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const HomePage(),
-      ),
-    );
+
+  // Login method:
+  void login() async {
+    try {
+      // Attempt to sign in with email and password
+      await _auth.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+
+      // Display a success message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Login Successful!'),
+          backgroundColor: Colors.green, //
+          duration: Duration(seconds: 2), // Duration for the snack bar to be visible
+        ),
+      );
+
+      // On successful login, navigate to the home page
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      // Display error message if login fails
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(content: Text('Error: ${e.message}')),
+      // );
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Error: ${e.message}',
+            style: TextStyle(fontSize: 16), // Adjust fontSize as needed
+          ),
+          backgroundColor: Colors.red, // Optional: change the background color
+          duration: Duration(seconds: 3), // Optional: change the duration
+        ),
+      );
+    }
   }
 
   @override
