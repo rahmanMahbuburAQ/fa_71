@@ -3,6 +3,7 @@ import 'package:fa_71/components/my_textfield.dart';
 import 'package:fa_71/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -24,6 +25,11 @@ class _LoginPageState extends State<LoginPage> {
 
   // Firebase Authentication instance
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  //Google sign in
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: ['email'],
+  );
 
 
   // Login method:
@@ -69,6 +75,40 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  //Google sign In:
+  Future<void> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) {
+        // If the sign in process was aborted, return early
+        return;
+      }
+
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      await _auth.signInWithCredential(credential);
+
+      // Navigate to the HomePage on successful login
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()),
+      );
+
+      // Show success message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Successfully signed in with Google!')),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to sign in with Google: $e')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,7 +127,8 @@ class _LoginPageState extends State<LoginPage> {
 
             // Message, app slogan
             Text(
-              '67Welcome to Cart71 app!',
+              ''
+                  'Welcome to Cart71 app!',
               style: TextStyle(
                 fontSize: 18,
                 color: Theme.of(context).colorScheme.inversePrimary,
@@ -138,6 +179,11 @@ class _LoginPageState extends State<LoginPage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                ),
+                ElevatedButton(
+                  onPressed: signInWithGoogle
+                  ,
+                  child: Text('Google'),
                 ),
               ],
             ),

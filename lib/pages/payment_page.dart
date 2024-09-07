@@ -1,3 +1,4 @@
+import 'package:fa_71/pages/api_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fa_71/controllers/stripe_service.dart';
 
@@ -38,12 +39,13 @@ class _PaymentPageState extends State<PaymentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Payment Screen'),
+        title: Text('Payment Screen3'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
             Text(
               'Payment section', // The text you want to display
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -53,6 +55,28 @@ class _PaymentPageState extends State<PaymentPage> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        ApiResponses(),
+                  ),
+                );
+              },
+              child: Text("Go to API response"),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue, // Background color
+                foregroundColor: Colors.white, // Text color
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12), // Button padding
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8), // Rounded corners
+                ),
+              ),
+            ),
+            SizedBox(height: 50,),
+
             ElevatedButton(
               onPressed: () async {
                 try {
