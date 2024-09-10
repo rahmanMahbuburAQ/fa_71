@@ -20,13 +20,25 @@ class ShoeTile2 extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             //show pic
+            // ClipRRect(
+            //     borderRadius: BorderRadius.circular(10),
+            //     child: Image.asset(shoe.imagePath),
+            // ),
             ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(shoe.imagePath),
+              //borderRadius: BorderRadius.circular(0),
+              child: SizedBox(
+                width: 285,  // Set your desired width
+                height: 200, // Set your desired height
+                child: Image.asset(
+                  shoe.imagePath,
+                  fit: BoxFit.cover, // Adjust how the image should fit the box
+                ),
+              ),
             ),
+
             //description
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.symmetric(horizontal:20,vertical: 10),
               child: Text(
                 shoe.description,
                 style: TextStyle(color: Colors.grey[600]),
@@ -55,7 +67,7 @@ class ShoeTile2 extends StatelessWidget {
                       SizedBox(height:7),
                       //price
                       Text(
-                          '\$'+ shoe.price,
+                          '\￥'+ shoe.price,
                           style: TextStyle(
                             color: Colors.grey
                           ),

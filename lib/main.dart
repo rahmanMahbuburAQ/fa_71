@@ -7,9 +7,13 @@ import 'package:provider/provider.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+
+
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
 
   runApp(
     MultiProvider(
@@ -22,22 +26,17 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget{
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build (BuildContext context){
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: OnBoardingPage(),
+      home: const OnBoardingPage(),
+      theme: Provider.of<ThemeProvider>(context).themeData,
     );
   }
 }
 
 
-
-// return MaterialApp(
-// debugShowCheckedModeBanner: false,
-// home: const OnBoardingPage(),
-// theme: Provider.of<ThemeProvider>(context).themeData,
-// );

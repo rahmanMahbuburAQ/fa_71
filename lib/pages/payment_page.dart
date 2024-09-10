@@ -1,4 +1,5 @@
 import 'package:fa_71/pages/api_screen.dart';
+import 'package:fa_71/pages/home_page2.dart';
 import 'package:flutter/material.dart';
 import 'package:fa_71/controllers/stripe_service.dart';
 
@@ -12,7 +13,7 @@ class PaymentPage extends StatefulWidget {
 }
 
 class _PaymentPageState extends State<PaymentPage> {
-  String amount = '5500';
+  String amount = '2500';
   String currency = 'JPY';
 
   @override
@@ -39,7 +40,7 @@ class _PaymentPageState extends State<PaymentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Payment Screen3'),
+        title: Text('Payment Screen'),
       ),
       body: Center(
         child: Column(
@@ -84,6 +85,13 @@ class _PaymentPageState extends State<PaymentPage> {
                   await StripeService.presentPaymentSheet();
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('Congratulations!!! Payment successful!')),
+                  );
+                  // On successful login, navigate to the home page
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HomePage2(),
+                    ),
                   );
                 } catch (e) {
                   print('Payment error: $e');

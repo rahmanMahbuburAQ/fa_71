@@ -39,10 +39,10 @@ class _HomePage2State extends State<HomePage2> {
       bottomNavigationBar: MyBottomNavbar(
         onTabChange: (index) => navigationBottomBar(index),
       ),
-      appBar: AppBar(
-        backgroundColor: Colors.redAccent,
-        elevation: 0,
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.redAccent,
+      //   elevation: 0,
+      // ),
       body: _pages[_selectedIndex],
     );
   }

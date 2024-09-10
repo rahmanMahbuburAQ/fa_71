@@ -8,25 +8,25 @@ class Cart extends ChangeNotifier{
   List<Shoe> shoeShop = [
     Shoe(
         name: 'Python Learning',
-        price: '20',
+        price: '1200',
         imagePath: 'lib/images/python.jpeg',
         description: 'If you’re looking for a programming language that’s flexible and easy to read, try learning Python. '
     ),
     Shoe(
         name: 'Dart Learning',
-        price: '18',
+        price: '1800',
         imagePath: 'lib/images/dart.png',
         description: 'If you’re looking for a programming language that’s flexible and easy to read, try learning Python. '
     ),
     Shoe(
         name: 'Swift Learning',
-        price: '22',
+        price: '1200',
         imagePath: 'lib/images/swift.jpg',
         description: 'If you’re looking for a programming language that’s flexible and easy to read, try learning Python. '
     ),
     Shoe(
         name: 'Javascript Learning',
-        price: '30',
+        price: '1300',
         imagePath: 'lib/images/js1.jpg',
         description: 'If you’re looking for a programming language that’s flexible and easy to read, try learning Python. '
     )

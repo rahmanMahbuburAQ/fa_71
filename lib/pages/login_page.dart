@@ -128,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
 
             // Message, app slogan
             Text(
-              'Welcome to Programming71 app!',
+              'Welcome to Programming71 app!88',
               style: TextStyle(
                 fontSize: 18,
                 color: Theme.of(context).colorScheme.inversePrimary,

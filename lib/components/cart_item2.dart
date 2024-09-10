@@ -33,7 +33,7 @@ class _CartItem2State extends State<CartItem2> {
       child: ListTile(
         leading: Image.asset(widget.shoe.imagePath,),
         title: Text(widget.shoe.name),
-        subtitle: Text('\$' + widget.shoe.price),
+        subtitle: Text('\￥' + widget.shoe.price),
         trailing: IconButton(
           icon:Icon(Icons.delete),
           onPressed: removeItemFromCart,

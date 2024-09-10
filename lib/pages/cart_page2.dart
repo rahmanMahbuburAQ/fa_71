@@ -17,7 +17,7 @@ class _CartPage2State extends State<CartPage2> {
   Widget build(BuildContext context) {
     return Consumer<Cart>(
       builder:(context, value, child) => Padding(
-        padding: EdgeInsets.symmetric(horizontal: 25,vertical: 7),
+        padding: EdgeInsets.fromLTRB(25, 40, 25, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -26,7 +26,7 @@ class _CartPage2State extends State<CartPage2> {
               'My Cart',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
             ),
-            SizedBox(height: 30,),
+            SizedBox(height: 0,),
             Expanded(
               child: ListView.builder(
                 itemCount: value.getUserCart().length,
@@ -40,7 +40,7 @@ class _CartPage2State extends State<CartPage2> {
                 },
               ),
             ),
-            SizedBox(height: 100,),
+            //SizedBox(height: 100,),
             Center(
               child: ElevatedButton(
                 onPressed: () {
