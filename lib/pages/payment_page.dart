@@ -55,26 +55,26 @@ class _PaymentPageState extends State<PaymentPage> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        ApiResponses(),
-                  ),
-                );
-              },
-              child: Text("Go to API response"),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue, // Background color
-                foregroundColor: Colors.white, // Text color
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12), // Button padding
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8), // Rounded corners
-                ),
-              ),
-            ),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //         builder: (context) =>
+            //             ApiResponses(),
+            //       ),
+            //     );
+            //   },
+            //   child: Text("Go to API response"),
+            //   style: ElevatedButton.styleFrom(
+            //     backgroundColor: Colors.blue, // Background color
+            //     foregroundColor: Colors.white, // Text color
+            //     padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12), // Button padding
+            //     shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(8), // Rounded corners
+            //     ),
+            //   ),
+            // ),
             SizedBox(height: 50,),
 
             ElevatedButton(

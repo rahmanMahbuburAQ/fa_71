@@ -73,6 +73,9 @@ class MyDrawer extends StatelessWidget {
           //home list tile
           MyDrawerTile(text: 'H o m e', icon: Icons.home, onTap: ()=> Navigator.pop(context)),
 
+          //About list tile
+          MyDrawerTile(text: 'A b o u t', icon: Icons.info, onTap: ()=> Navigator.pop(context)),
+
           //settings list tile
           MyDrawerTile(
               text: 'S e t t i n g s',

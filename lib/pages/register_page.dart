@@ -1,6 +1,7 @@
 import 'package:fa_71/components/my_button.dart';
 import 'package:fa_71/components/my_textfield.dart';
 import 'package:fa_71/pages/home_page.dart';
+import 'package:fa_71/pages/home_page2.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -49,7 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const HomePage(),
+            builder: (context) => const HomePage2(),
           ),
         );
       } on FirebaseAuthException catch (e) {
@@ -101,7 +102,7 @@ class _RegisterPageState extends State<RegisterPage> {
           children: [
             // Logo
             Icon(
-              Icons.add_shopping_cart_sharp,
+              Icons.computer_sharp,
               size: 80,
               color: Theme.of(context).colorScheme.inversePrimary,
             ),

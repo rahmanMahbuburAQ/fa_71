@@ -36,7 +36,7 @@ class CartPage extends StatelessWidget {
                     ),
                   );
                 },
-                child: Text('Go to payment'),
+                child: Text('Proceed to payment'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue, // Background color
                   foregroundColor: Colors.white, // Text color

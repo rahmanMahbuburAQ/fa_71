@@ -1,6 +1,7 @@
 import 'package:fa_71/components/my_button.dart';
 import 'package:fa_71/components/my_textfield.dart';
 import 'package:fa_71/pages/home_page.dart';
+import 'package:fa_71/pages/home_page2.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -54,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const HomePage(),
+          builder: (context) => const HomePage2(),
         ),
       );
     } on FirebaseAuthException catch (e) {
@@ -119,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             // Logo
             Icon(
-              Icons.add_shopping_cart_sharp,
+              Icons.computer_sharp,
               size: 80,
               color: Theme.of(context).colorScheme.inversePrimary,
             ),
@@ -127,8 +128,7 @@ class _LoginPageState extends State<LoginPage> {
 
             // Message, app slogan
             Text(
-              ''
-                  'Welcome to Cart71 app!',
+              'Welcome to Programming71 app!',
               style: TextStyle(
                 fontSize: 18,
                 color: Theme.of(context).colorScheme.inversePrimary,
@@ -180,12 +180,13 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: signInWithGoogle
-                  ,
-                  child: Text('Google'),
-                ),
+                // ElevatedButton(
+                //   onPressed: signInWithGoogle
+                //   ,
+                //   child: Text('Google'),
+                // ),
               ],
+
             ),
           ],
         ),
