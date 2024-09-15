@@ -8,7 +8,7 @@ class Cart extends ChangeNotifier{
   List<Shoe> shoeShop = [
     Shoe(
         name: 'Python Learning',
-        price: '1200',
+        price: '120',
         imagePath: 'lib/images/python.jpeg',
         description: 'If you’re looking for a programming language that’s flexible and easy to read, try learning Python. '
     ),

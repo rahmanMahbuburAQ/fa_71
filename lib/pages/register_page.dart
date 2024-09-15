@@ -1,5 +1,6 @@
 import 'package:fa_71/components/my_button.dart';
 import 'package:fa_71/components/my_textfield.dart';
+import 'package:fa_71/pages/animation_page.dart';
 import 'package:fa_71/pages/home_page.dart';
 import 'package:fa_71/pages/home_page2.dart';
 import 'package:flutter/material.dart';
@@ -38,19 +39,20 @@ class _RegisterPageState extends State<RegisterPage> {
 
 
         // Display a success message, If registration is successful, show a success message
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Registration Successful!'),
-            backgroundColor: Colors.green, //
-            duration: Duration(seconds: 2), // Duration for the snack bar to be visible
-          ),
-        );
+        //skipped for displaying animation image of Lottie
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   SnackBar(
+        //     content: Text('Registration Successful!'),
+        //     backgroundColor: Colors.green, //
+        //     duration: Duration(seconds: 2), // Duration for the snack bar to be visible
+        //   ),
+        // );
 
         // Navigate to the HomePage
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const HomePage2(),
+            builder: (context) => const AnimationPage(),
           ),
         );
       } on FirebaseAuthException catch (e) {
