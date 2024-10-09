@@ -3,12 +3,13 @@ import 'package:http/http.dart' as http;
 
 class ApiService {
   // Django API base URL
-  final String baseUrl = 'https://education-info-server-production.up.railway.app';
+  final String baseUrl = 'http://192.168.3.189:8000/api';
+
 
 
   Future<List<dynamic>> fetchCourses() async {
     try {
-      final response = await http.get(Uri.parse('$baseUrl/certificate'));
+      final response = await http.get(Uri.parse('$baseUrl/reviews/'));
 
       if (response.statusCode == 200) {
         // Decode the JSON response and return the list of courses

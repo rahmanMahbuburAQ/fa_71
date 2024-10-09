@@ -1,4 +1,5 @@
 import 'package:fa_71/auth/login_or_register.dart';
+import 'package:fa_71/pages/home_page2.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
@@ -145,7 +146,7 @@ class OnBoardingPage extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const LoginOrRegister(),
+            builder: (context) => const HomePage2(),
           ),
         );
 

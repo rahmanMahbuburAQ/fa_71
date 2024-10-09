@@ -23,6 +23,8 @@ class MyButton extends StatelessWidget {
         decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.secondary,
             borderRadius: BorderRadius.circular(10),
+
+
         ),
         child: Center(
           child: Text(
@@ -32,8 +34,16 @@ class MyButton extends StatelessWidget {
                   color: Theme.of(context).colorScheme.inversePrimary,
                   fontSize: 17,
               )),
+
+
+
         ),
       )
     );
   }
 }
+
+
+
+
+
