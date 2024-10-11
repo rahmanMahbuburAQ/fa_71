@@ -1,10 +1,12 @@
-import 'package:fa_71/models/shoe2.dart';
+import 'package:fa_71/models/api.dart';
 import 'package:flutter/material.dart';
 
 class ShoeTile2 extends StatelessWidget {
-  Shoe shoe;
+  final Course course;
   void Function()? onTap;
-  ShoeTile2({super.key, required this.shoe, required this.onTap});
+
+  // Constructor to receive the course and onTap function
+  ShoeTile2({super.key, required this.course, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -19,19 +21,19 @@ class ShoeTile2 extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            //show pic
-            // ClipRRect(
-            //     borderRadius: BorderRadius.circular(10),
-            //     child: Image.asset(shoe.imagePath),
-            // ),
             ClipRRect(
-              //borderRadius: BorderRadius.circular(0),
+              borderRadius: BorderRadius.circular(10),
               child: SizedBox(
                 width: 285,  // Set your desired width
                 height: 200, // Set your desired height
-                child: Image.asset(
-                  shoe.imagePath,
-                  fit: BoxFit.cover, // Adjust how the image should fit the box
+                child: course.image != null
+                    ? Image.network(
+                  course.image!, // Use the API image URL
+                  fit: BoxFit.cover, // Adjust how the image fits the box
+                )
+                    : Image.asset(
+                  'lib/images/default.png', // Use a placeholder if no image is available
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
@@ -40,11 +42,11 @@ class ShoeTile2 extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal:20,vertical: 10),
               child: Text(
-                shoe.description,
+                course.description,
                 style: TextStyle(color: Colors.grey[600]),
               ),
             ),
-      
+
             //price + details
 
             Padding(
@@ -58,7 +60,7 @@ class ShoeTile2 extends StatelessWidget {
                     children: [
                       //shoe name:
                       Text(
-                          shoe.name,
+                          course.title,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20
@@ -67,7 +69,7 @@ class ShoeTile2 extends StatelessWidget {
                       SizedBox(height:7),
                       //price
                       Text(
-                          '\￥'+ shoe.price,
+                          '\￥'+ course.price,
                           style: TextStyle(
                             color: Colors.grey
                           ),
@@ -101,3 +103,7 @@ class ShoeTile2 extends StatelessWidget {
     );
   }
 }
+
+
+
+//https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg

@@ -1,60 +1,47 @@
+import 'dart:convert';
+import 'package:fa_71/models/api.dart';
 import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
 
-import 'shoe2.dart';
+class Cart extends ChangeNotifier {
+  // List of courses for sale:
+  List<Course> courseShop = [];
 
-class Cart extends ChangeNotifier{
-  //list of shoes for sale:
+  // List of items in user's cart:
+  List<Course> userCart = [];
 
-  List<Shoe> shoeShop = [
-    Shoe(
-        name: 'Python Learning',
-        price: '120',
-        imagePath: 'lib/images/python.jpeg',
-        description: 'If you’re looking for a programming language that’s flexible and easy to read, try learning Python. '
-    ),
-    Shoe(
-        name: 'Dart Learning',
-        price: '1800',
-        imagePath: 'lib/images/dart.png',
-        description: 'If you’re looking for a programming language that’s flexible and easy to read, try learning Python. '
-    ),
-    Shoe(
-        name: 'Swift Learning',
-        price: '1200',
-        imagePath: 'lib/images/swift.jpg',
-        description: 'If you’re looking for a programming language that’s flexible and easy to read, try learning Python. '
-    ),
-    Shoe(
-        name: 'Javascript Learning',
-        price: '1300',
-        imagePath: 'lib/images/js1.jpg',
-        description: 'If you’re looking for a programming language that’s flexible and easy to read, try learning Python. '
-    )
-  ];
+  // Fetch dynamic data from API
+  Future<void> fetchCourses() async {
+    final response = await http.get(Uri.parse('http://192.168.3.189:8000/api/courses/'));
 
-  //list of items in user cart
-List<Shoe> userCart = [];
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      courseShop = data.map((json) => Course.fromJson(json)).toList();
+      notifyListeners();
+    } else {
+      throw Exception('Failed to load courses');
+    }
+  }
 
-  // get list of shoes for sale
-List<Shoe> getShoeList(){
-  return shoeShop;
-}
+  // Get list of courses for sale
+  List<Course> getCourseList() {
+    return courseShop;
+  }
 
-  //get cart
-List<Shoe> getUserCart(){
-  return userCart;
-}
+  // Get cart items
+  List<Course> getUserCart() {
+    return userCart;
+  }
 
-  //add items to cart
-void addItemToCart(Shoe shoe){
-  userCart.add(shoe);
-  notifyListeners();
-}
+  // Add items to cart
+  void addItemToCart(Course course) {
+    userCart.add(course);
+    notifyListeners();
+  }
 
-  //remove item from cart:
-void removeItemFromCart(Shoe shoe){
-  userCart.remove(shoe);
-  notifyListeners();
-}
-
+  // Remove items from cart
+  void removeItemFromCart(Course course) {
+    userCart.remove(course);
+    notifyListeners();
+  }
 }

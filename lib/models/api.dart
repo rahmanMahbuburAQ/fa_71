@@ -1,6 +1,7 @@
 class Course {
   final int id;
   final String title;
+  final String image;
   final String description;
   final String price;
   final int duration;
@@ -11,6 +12,7 @@ class Course {
   Course({
     required this.id,
     required this.title,
+    required this.image,
     required this.description,
     required this.price,
     required this.duration,
@@ -23,6 +25,7 @@ class Course {
     return Course(
       id: json['id'],
       title: json['title'],
+      image: json['image'],
       description: json['description'],
       price: json['price'],
       duration: json['duration'],
@@ -38,14 +41,14 @@ class Instructor {
   final String name;
   final String bio;
   final String email;
-  final String profileImage;
+  final String profile_image;
 
   Instructor({
     required this.id,
     required this.name,
     required this.bio,
     required this.email,
-    required this.profileImage,
+    required this.profile_image,
   });
 
   factory Instructor.fromJson(Map<String, dynamic> json) {
@@ -54,7 +57,7 @@ class Instructor {
       name: json['name'],
       bio: json['bio'],
       email: json['email'],
-      profileImage: json['profile_image'] ?? '', // Ensure null safety
+      profile_image: json['profile_image'] ?? '', // Ensure null safety
     );
   }
 }

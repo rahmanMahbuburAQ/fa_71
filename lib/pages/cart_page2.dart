@@ -1,6 +1,6 @@
 import 'package:fa_71/components/cart_item2.dart';
+import 'package:fa_71/models/api.dart';
 import 'package:fa_71/models/cart2.dart';
-import 'package:fa_71/models/shoe2.dart';
 import 'package:fa_71/pages/payment_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -32,10 +32,10 @@ class _CartPage2State extends State<CartPage2> {
                 itemCount: value.getUserCart().length,
                 itemBuilder: (context, index){
               //get individual shoe
-              Shoe individualShoe = value.getUserCart()[index];
+              Course individualShoe = value.getUserCart()[index];
 
               //return the cart item:
-              return CartItem2(shoe: individualShoe);
+              return CartItem2(course: individualShoe);
 
                 },
               ),

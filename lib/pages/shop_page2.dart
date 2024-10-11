@@ -1,6 +1,6 @@
 import 'package:fa_71/components/shoe_tile2.dart';
+import 'package:fa_71/models/api.dart';
 import 'package:fa_71/models/cart2.dart';
-import 'package:fa_71/models/shoe2.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,12 +12,20 @@ class ShopPage2 extends StatefulWidget {
 }
 
 class _ShopPage2State extends State<ShopPage2> {
+  @override
+  void initState() {
+    super.initState();
+
+    // Fetch the courses when the widget is initialized
+    Provider.of<Cart>(context, listen: false).fetchCourses();
+  }
+
 
   //add shoe to cart
-  void addShoeToCart(Shoe shoe){
-    Provider.of<Cart>(context, listen: false).addItemToCart(shoe);
+  void addCourseToCart(Course course){
+    Provider.of<Cart>(context, listen: false).addItemToCart(course);
 
-    //alert user, shoe successfully added to cart
+    //alert user, course successfully added to cart
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -30,7 +38,7 @@ class _ShopPage2State extends State<ShopPage2> {
   @override
   Widget build(BuildContext context) {
     return Consumer<Cart>(
-        builder:(context, value, child)=> Padding(
+        builder:(context, cart, child)=> Padding(
           padding: EdgeInsets.fromLTRB(0, 25, 0, 0),
           child: Column(
             children: [
@@ -62,7 +70,7 @@ class _ShopPage2State extends State<ShopPage2> {
               Padding(
                   padding: EdgeInsets.symmetric(vertical: 15,horizontal: 20),
                   child: Text(
-                    'Learn Programming. Here you can learn popular programming languages. Buy now.',
+                    '45Learn Programming. Here you can learn popular programming languages. Buy now.',
                     style: TextStyle(color: Colors.grey[600]),
                   )
               ),
@@ -96,7 +104,7 @@ class _ShopPage2State extends State<ShopPage2> {
 
               Expanded(
                   child: ListView.builder(
-                    itemCount: 4,
+                    itemCount: cart.getCourseList().length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index){
                       //create a shoe
@@ -106,10 +114,10 @@ class _ShopPage2State extends State<ShopPage2> {
                       //     imagePath:'lib/images/two.png',
                       //     description: 'Lorem Ipsum',
                       // );
-                      Shoe shoe = value.getShoeList()[index];
+                      Course course = cart.getCourseList()[index];
                       return ShoeTile2(
-                        shoe: shoe,
-                        onTap: ()=> addShoeToCart(shoe),
+                        course: course,
+                        onTap: ()=> addCourseToCart(course),
                       );
                     },
                   )
@@ -120,6 +128,8 @@ class _ShopPage2State extends State<ShopPage2> {
                   color: Colors.white,
                 ),
               ),
+
+
             ],
           ),
         ),

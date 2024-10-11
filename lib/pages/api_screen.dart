@@ -30,11 +30,13 @@ class _ApiResponsesState extends State<ApiResponses> {
     }
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Courses'),
+        title: Text('Courses67'),
       ),
       body: courses.isEmpty
           ? Center(child: CircularProgressIndicator())
@@ -73,8 +75,8 @@ class _ApiResponsesState extends State<ApiResponses> {
                   Text('Email: ${course.instructor.email}'),
                   SizedBox(height: 10),
                   Image.network(
-                    course.instructor.profileImage.isNotEmpty
-                        ? course.instructor.profileImage
+                    course.instructor.profile_image.isNotEmpty
+                        ? course.instructor.profile_image
                         : 'https://via.placeholder.com/150', // Placeholder image
                     errorBuilder: (context, error, stackTrace) {
                       return Icon(Icons.error); // Display an error icon
