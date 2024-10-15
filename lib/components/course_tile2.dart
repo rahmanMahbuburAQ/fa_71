@@ -1,12 +1,18 @@
 import 'package:fa_71/models/api.dart';
 import 'package:flutter/material.dart';
 
-class ShoeTile2 extends StatelessWidget {
+class CourseTile2 extends StatelessWidget {
   final Course course;
   void Function()? onTap;
+  final bool isAddedToCart;
 
   // Constructor to receive the course and onTap function
-  ShoeTile2({super.key, required this.course, required this.onTap});
+  CourseTile2({
+    super.key,
+    required this.course,
+    required this.onTap,
+    required this.isAddedToCart,  // Track whether it's added to cart
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -80,11 +86,16 @@ class ShoeTile2 extends StatelessWidget {
                   ),
                   //plus button
                   GestureDetector(
+                    //onTap: isAddedToCart ? null : onTap, // Disable button if added
                     onTap: onTap,
                     child: Container(
                       padding: EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                            color: Colors.black,
+                            color: isAddedToCart ? Colors.grey
+
+
+                                : Colors.black, // Change color when disabled
+                            // color: Colors.black,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(12),
                               bottomRight:Radius.circular(12),

@@ -4,11 +4,14 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 class Cart extends ChangeNotifier {
-  // List of courses for sale:
+  // List of courses for sale
   List<Course> courseShop = [];
 
-  // List of items in user's cart:
+  // List of items in user's cart
   List<Course> userCart = [];
+
+  // Set of added course IDs to disable the '+' button once a course is added
+  Set<int> _addedCourseIds = {};
 
   // Fetch dynamic data from API
   Future<void> fetchCourses() async {
@@ -33,15 +36,25 @@ class Cart extends ChangeNotifier {
     return userCart;
   }
 
-  // Add items to cart
-  void addItemToCart(Course course) {
-    userCart.add(course);
-    notifyListeners();
+  // Check if a course is already added to the cart
+  bool isCourseAdded(int courseId) {
+    return _addedCourseIds.contains(courseId);
   }
 
-  // Remove items from cart
+  // Add items to cart and disable '+' button for that course
+  void addItemToCart(Course course) {
+    if (!_addedCourseIds.contains(course.id)) {
+      userCart.add(course);
+      _addedCourseIds.add(course.id); // Mark this course as added
+      notifyListeners();
+    }
+  }
+
+  // Remove items from cart and re-enable the '+' button for that course
   void removeItemFromCart(Course course) {
     userCart.remove(course);
+    _addedCourseIds.remove(course.id); // Remove from added set
     notifyListeners();
   }
 }
+
