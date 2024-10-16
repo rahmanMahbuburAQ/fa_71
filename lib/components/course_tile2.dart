@@ -72,6 +72,12 @@ class CourseTile2 extends StatelessWidget {
                             fontSize: 20
                           ),
                       ),
+                      // Text(
+                      //   'Instructor Name: '+ course.instructor.name,
+                      //   style: TextStyle(
+                      //       color: Colors.grey
+                      //   ),
+                      // ),
                       SizedBox(height:7),
                       //price
                       Text(
@@ -79,8 +85,10 @@ class CourseTile2 extends StatelessWidget {
                           style: TextStyle(
                             color: Colors.grey
                           ),
-
                       ),
+                      SizedBox(height:7),
+                      //price
+
 
                     ],
                   ),

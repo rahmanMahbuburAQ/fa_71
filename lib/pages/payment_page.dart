@@ -1,7 +1,8 @@
-import 'package:fa_71/pages/api_screen.dart';
+import 'package:fa_71/models/cart2.dart';
 import 'package:fa_71/pages/home_page2.dart';
 import 'package:flutter/material.dart';
 import 'package:fa_71/controllers/stripe_service.dart';
+import 'package:provider/provider.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key
@@ -13,7 +14,6 @@ class PaymentPage extends StatefulWidget {
 }
 
 class _PaymentPageState extends State<PaymentPage> {
-  String amount = '2500';
   String currency = 'JPY';
 
   @override
@@ -40,76 +40,80 @@ class _PaymentPageState extends State<PaymentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Payment Screen'),
+        title: Text('Checkout'),
+        centerTitle: true,  // This centers the title
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-
-            Text(
-              'Payment section', // The text you want to display
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              'Total payment', // The text you want to display
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        ApiResponses(),
-                  ),
-                );
-              },
-              child: Text("Go to API response"),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue, // Background color
-                foregroundColor: Colors.white, // Text color
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12), // Button padding
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8), // Rounded corners
+        child: Consumer<Cart>(
+          builder: (context, value, child){
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start, // Aligns all children to the left
+              children: [
+                SizedBox(height: 50),
+                Text(
+                  'Summary:', // The text you want to display
+                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold,decoration: TextDecoration.underline)
                 ),
-              ),
-            ),
-            SizedBox(height: 50,),
+                SizedBox(height: 10),
+                Text(
+                  'Original Price: \￥${value.getTotalPrice().toStringAsFixed(0)} ', // The text you want to display
+                  style: TextStyle(fontSize: 18),
+                ),
+                SizedBox(height: 6),
+                Text(
+                  'Discounts: ￥0', // The text you want to display
+                  style: TextStyle(fontSize: 18),
+                ),
+                SizedBox(height: 70),
+                // Divider( // Horizontal line after the text
+                //   color: Colors.grey,
+                //   thickness: 1, // You can adjust the thickness of the line
+                // ),
+                Text(
+                  'Total: \￥${value.getTotalPrice().toStringAsFixed(0)} ', // The text you want to display
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 150),
 
-            ElevatedButton(
-              onPressed: () async {
-                try {
-                  await StripeService.initPaymentSheet(amount, currency);
-                  await StripeService.presentPaymentSheet();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Congratulations!!! Payment successful!')),
-                  );
-                  // On successful login, navigate to the home page
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const HomePage2(),
+                ElevatedButton(
+                  onPressed: () async {
+                    try {
+                      // Extracting the total price as a double and converting it to a string
+                      double totalPrice = value.getTotalPrice();
+                      String amount = totalPrice.toStringAsFixed(0); // Convert to string without decimals
+                      await StripeService.initPaymentSheet(amount, currency);
+                      await StripeService.presentPaymentSheet();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Congratulations!!! Payment successful!')),
+                      );
+                      // On successful login, navigate to the home page
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomePage2(),
+                        ),
+                      );
+                    } catch (e) {
+                      print('Payment error: $e');
+                      handlePaymentError(e);
+                    }
+                  },
+                  child: Text("Complete Checkout"),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue, // Background color
+                    foregroundColor: Colors.white, // Text color
+                    padding: EdgeInsets.symmetric(horizontal: 94, vertical: 16), // Button padding
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8), // Rounded corners
                     ),
-                  );
-                } catch (e) {
-                  print('Payment error: $e');
-                  handlePaymentError(e);
-                }
-              },
-              child: Text("Pay JPY $amount"),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue, // Background color
-                foregroundColor: Colors.white, // Text color
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12), // Button padding
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8), // Rounded corners
+                  ),
                 ),
-              ),
-            ),
-          ],
+              ],
+            );
+          }
         ),
+
       ),
     );
   }

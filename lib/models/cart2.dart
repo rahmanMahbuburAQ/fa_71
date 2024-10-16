@@ -56,5 +56,16 @@ class Cart extends ChangeNotifier {
     _addedCourseIds.remove(course.id); // Remove from added set
     notifyListeners();
   }
+
+  // Get total price of items in the cart
+  double getTotalPrice() {
+    double total = 0.0;
+    for (var course in userCart) {
+      total += double.parse(course.price);
+    }
+    return total;
+  }
+
+
 }
 

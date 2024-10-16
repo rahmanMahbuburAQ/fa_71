@@ -41,28 +41,59 @@ class _CartPage2State extends State<CartPage2> {
               ),
             ),
             //SizedBox(height: 100,),
+
+            // Display total price
+            Column(
+              mainAxisSize: MainAxisSize.min, // Adjusts column size to fit children
+              children: [
+                Text(
+                  'Total \￥${value.getTotalPrice().toStringAsFixed(0)}',
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 4), // Adds some spacing between texts
+                // Text(
+                //   '\￥${value.getTotalPrice().toStringAsFixed(2)}',
+                //   style: const TextStyle(
+                //     fontSize: 16,
+                //     fontWeight: FontWeight.bold,
+                //   ),
+                // ),
+              ],
+            ),
+
             Center(
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>
-                          PaymentPage(),
+                      builder: (context) => PaymentPage(),
                     ),
                   );
                 },
-                child: Text('Go to payment'),
                 style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue, // Background color
-                      foregroundColor: Colors.white, // Text color
-                      padding: EdgeInsets.symmetric(horizontal: 104, vertical: 12), // Button padding
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8), // Rounded corners
-                      ),
+                  backgroundColor: Colors.blue, // Background color
+                  foregroundColor: Colors.white, // Text color
+                  padding: const EdgeInsets.symmetric(horizontal: 124, vertical: 15), // Button padding
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(2), // Rounded corners
+                  ),
+                ),
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    'Checkout',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ),
-              ),
-            ),
+            )
           ],
         ),
       )

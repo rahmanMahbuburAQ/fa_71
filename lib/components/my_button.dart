@@ -34,9 +34,6 @@ class MyButton extends StatelessWidget {
                   color: Theme.of(context).colorScheme.inversePrimary,
                   fontSize: 17,
               )),
-
-
-
         ),
       )
     );
