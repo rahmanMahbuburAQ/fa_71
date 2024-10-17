@@ -66,6 +66,12 @@ class Cart extends ChangeNotifier {
     return total;
   }
 
+  void clearCart() {
+    userCart.clear(); // Assuming _items is the list of items in the cart
+    notifyListeners(); // Notifies any listeners to update the UI
+  }
+
+
 
 }
 

@@ -66,16 +66,18 @@ class _CartPage2State extends State<CartPage2> {
 
             Center(
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: value.getTotalPrice() > 0 ? ()
+                {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => PaymentPage(),
                     ),
                   );
-                },
+                }
+                : null,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue, // Background color
+                  backgroundColor: value.getTotalPrice() > 0 ? Colors.blue : Colors.grey, // Change color when disabled
                   foregroundColor: Colors.white, // Text color
                   padding: const EdgeInsets.symmetric(horizontal: 124, vertical: 15), // Button padding
                   shape: RoundedRectangleBorder(
