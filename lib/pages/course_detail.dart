@@ -73,7 +73,6 @@ class CourseDetailScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
-              // Display course description
               Text(
                 'Instructor Bio: ' + course.instructor.bio,
                 style: TextStyle(fontSize: 12),

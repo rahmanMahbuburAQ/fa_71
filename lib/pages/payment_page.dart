@@ -1,4 +1,5 @@
 import 'package:fa_71/models/cart2.dart';
+import 'package:fa_71/pages/bought_courses_page.dart';
 import 'package:fa_71/pages/home_page2.dart';
 import 'package:flutter/material.dart';
 import 'package:fa_71/controllers/stripe_service.dart';
@@ -98,8 +99,12 @@ class _PaymentPageState extends State<PaymentPage> {
                   // Clear the cart items after successful payment
                     Provider.of<Cart>(context, listen: false).clearCart();
                   // On successful payment, navigate to the home page
-                    Navigator.pushReplacement(context, MaterialPageRoute(
-                        builder: (context) => const HomePage2(),
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BoughtCoursesPage(
+                          boughtCourses: Provider.of<Cart>(context, listen: false).getBoughtCourses(),
+                        ),
                        ),
                     );
                   } catch (e) {

@@ -1,6 +1,7 @@
 import 'package:fa_71/components/course_tile2.dart';
 import 'package:fa_71/models/api.dart';
 import 'package:fa_71/models/cart2.dart';
+import 'package:fa_71/pages/bought_courses_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,6 +20,8 @@ class _ShopPage2State extends State<ShopPage2> {
     super.initState();
     // Fetch the courses when the widget is initialized
     Provider.of<Cart>(context, listen: false).fetchCourses();
+    Provider.of<Cart>(context, listen: false).loadBoughtCourses(); // Load bought courses on startup
+
   }
 
   // Add course to cart and disable the "+" button for that course
@@ -66,6 +69,7 @@ class _ShopPage2State extends State<ShopPage2> {
           child: Column(
             children: [
               // Search bar
+
               Container(
                 padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
                 margin: const EdgeInsets.all(20),
@@ -106,18 +110,30 @@ class _ShopPage2State extends State<ShopPage2> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text(
-                      'Hot picks',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                    GestureDetector(
+                      onTap: () {
+                        // Access the bought courses from the Cart provider
+                        final boughtCourses = Provider.of<Cart>(context, listen: false).getBoughtCourses();
+                        // Navigate to BoughtNewCourses page
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => BoughtCoursesPage(boughtCourses: boughtCourses)),
+                        );
+                      },
+                      child: Text(
+                        'Bought Courses',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          color: Colors.blue, // Optional: Make it look clickable by changing the text color
+                        ),
                       ),
                     ),
                     Text(
                       'See all',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                        fontSize: 15,
                         color: Colors.blue,
                       ),
                     ),
@@ -134,6 +150,9 @@ class _ShopPage2State extends State<ShopPage2> {
                   itemBuilder: (context, index) {
                     // Get the current course
                     Course course = filteredCourses[index];
+
+
+
 
                     return CourseTile2(
                       course: course,

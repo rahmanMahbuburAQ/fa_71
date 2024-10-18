@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:fa_71/models/api.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Cart extends ChangeNotifier {
   // List of courses for sale
@@ -9,6 +10,9 @@ class Cart extends ChangeNotifier {
 
   // List of items in user's cart
   List<Course> userCart = [];
+
+  //bought courses
+  List<Course> boughtCourses = [];
 
   // Set of added course IDs to disable the '+' button once a course is added
   Set<int> _addedCourseIds = {};
@@ -67,8 +71,34 @@ class Cart extends ChangeNotifier {
   }
 
   void clearCart() {
-    userCart.clear(); // Assuming _items is the list of items in the cart
-    notifyListeners(); // Notifies any listeners to update the UI
+    if (userCart.isNotEmpty) {
+      boughtCourses.addAll(userCart);  // Add all items in userCart to boughtCourses
+      userCart.clear();                // Clear the cart
+      notifyListeners();               // Notifies any listeners to update the UI
+    }
+  }
+
+  // Save boughtCourses to SharedPreferences
+  Future<void> saveBoughtCourses() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> courseJsonList = boughtCourses.map((course) => json.encode(course.toJson())).toList();
+    await prefs.setStringList('boughtCourses', courseJsonList);
+  }
+
+  // Load boughtCourses from SharedPreferences
+  Future<void> loadBoughtCourses() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String>? courseJsonList = prefs.getStringList('boughtCourses');
+    if (courseJsonList != null) {
+      boughtCourses = courseJsonList.map((courseJson) => Course.fromJson(json.decode(courseJson))).toList();
+      notifyListeners();
+    }
+  }
+
+
+
+  List<Course> getBoughtCourses() {
+    return boughtCourses;
   }
 
 
