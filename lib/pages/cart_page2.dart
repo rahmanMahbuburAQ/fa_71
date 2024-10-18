@@ -32,10 +32,10 @@ class _CartPage2State extends State<CartPage2> {
                 itemCount: value.getUserCart().length,
                 itemBuilder: (context, index){
               //get individual shoe
-              Course individualShoe = value.getUserCart()[index];
+              Course getCourseData = value.getUserCart()[index];
 
               //return the cart item:
-              return CartItem2(course: individualShoe);
+              return CartItem2(course: getCourseData);
 
                 },
               ),

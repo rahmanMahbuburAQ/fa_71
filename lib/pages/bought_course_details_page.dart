@@ -8,23 +8,36 @@ class BoughtCourseDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child
-          : Scaffold(
-        appBar: AppBar(title: Text(course.title)),
-        body: Padding(
+    return Scaffold(
+      appBar: AppBar(title: Text(course.title)),
+      body: SingleChildScrollView( // Wrap content in a scrollable widget if it might exceed screen size
+        child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               course.image != null
-                  ? Image.network(course.image!, height: 200, fit: BoxFit.cover)
-                  : Image.asset('lib/images/profile_default.png', height: 200, fit: BoxFit.cover),
+                  ? Container(
+                height: 200, // Constrain the image size to prevent infinite height
+                width: double.infinity, // Take full width
+                child: Image.network(
+                  course.image!,
+                  fit: BoxFit.cover,
+                ),
+              )
+                  : SizedBox(
+                height: 200,
+                width: double.infinity,
+                child: Image.asset('lib/images/profile_default.png', fit: BoxFit.cover),
+              ),
               SizedBox(height: 16),
-              Text(course.title, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              Text(
+                course.title,
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
               SizedBox(height: 16),
               Text(course.description),
-              // Add other course details if needed
+              // Add more course details here if needed
             ],
           ),
         ),
@@ -32,3 +45,4 @@ class BoughtCourseDetailsPage extends StatelessWidget {
     );
   }
 }
+

@@ -134,9 +134,9 @@ class _PaymentPageState extends State<PaymentPage> {
               style: ElevatedButton.styleFrom(
               backgroundColor: value.getTotalPrice() > 0 ? Colors.blue : Colors.grey, // Change color based on total price
               foregroundColor: Colors.white, // Text color
-              padding: EdgeInsets.symmetric(vertical: 16), // Button padding
+              padding: EdgeInsets.symmetric(vertical: 15), // Button padding
               shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8), // Rounded corners
+              borderRadius: BorderRadius.circular(2), // Rounded corners
                      ),
                   ),
                 )
