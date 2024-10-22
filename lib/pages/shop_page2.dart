@@ -53,7 +53,7 @@ class _ShopPage2State extends State<ShopPage2> {
     return courses.where((course) {
       final lowerCaseQuery = searchQuery.toLowerCase();
       return course.language.toLowerCase().contains(lowerCaseQuery) ||
-          course.description.toLowerCase().contains(lowerCaseQuery);
+          (course.description?.toLowerCase() ?? '').contains(lowerCaseQuery);
     }).toList();
   }
 
@@ -121,7 +121,7 @@ class _ShopPage2State extends State<ShopPage2> {
                         );
                       },
                       child: Text(
-                        'Bought Courses',
+                        'My Courses',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 15,

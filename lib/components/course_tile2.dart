@@ -68,7 +68,7 @@ class CourseTile2 extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal:20,vertical: 10),
                 child: Text(
-                  getShortDescription(course.description, 30), // Display first 50 words
+                  getShortDescription(course.description ?? '', 30), // Display first 50 words
                   style: TextStyle(color: Colors.grey[600]),
                 ),
               ),
@@ -101,7 +101,7 @@ class CourseTile2 extends StatelessWidget {
                         SizedBox(height:7),
                         //price
                         Text(
-                            '\￥'+ course.price,
+                          '￥' + double.parse(course.price).toStringAsFixed(0), // Convert the price to double first
                             style: TextStyle(
                               color: Colors.grey
                             ),
@@ -120,8 +120,6 @@ class CourseTile2 extends StatelessWidget {
                         padding: EdgeInsets.all(20),
                           decoration: BoxDecoration(
                               color: isAddedToCart ? Colors.grey
-          
-          
                                   : Colors.black, // Change color when disabled
                               // color: Colors.black,
                               borderRadius: BorderRadius.only(

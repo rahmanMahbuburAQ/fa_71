@@ -45,6 +45,10 @@ dependencies:
   google_nav_bar: ^5.0.6
   lottie: ^3.1.2
   shared_preferences: ^2.3.2
+  url_launcher: ^6.3.1
+  flick_video_player: ^0.9.0
+  video_player: ^2.9.2
+  wakelock_plus: ^1.2.8
 
 
 dev_dependencies:
